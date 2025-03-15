@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <title>MediHeal Chatbot - A Chatbot Prototype That Suggests Conditions Based on Symptoms</title>
+  <meta
+    name="description"
+    content="Symptom Checker Chatbot: A prototype that helps you find possible conditions based on your symptoms. This is not a substitute for professional medical advice."
+  />
+  <meta
+    name="keywords"
+    content="Symptom Checker, Medical, Chatbot, Health, AI, Conditions"
+  />
+
+  <link href="assets/img/favicon.png" rel="icon" />
+  <link
+    href="assets/img/apple-touch-icon.png"
+    rel="apple-touch-icon"
+  />
+
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet"
+  />
+
+  <link
+    href="assets/vendor/bootstrap/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+  <link
+    href="assets/vendor/glightbox/css/glightbox.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="assets/vendor/swiper/swiper-bundle.min.css"
+    rel="stylesheet"
+  />
+
+  <link href="assets/css/main.css" rel="stylesheet" />
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header fixed-top">
+    <div class="branding d-flex align-items-cente">
+      <div
+        class="container position-relative d-flex align-items-center justify-content-between"
+      >
+        <a href="index.html" class="logo d-flex align-items-center">
+          <h1 class="sitename">MediHeal</h1>
+          <span>.</span>
+        </a>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <section id="chatbot" class="chatbot section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="section-title">
+          <h2>MediHeal Chatbot</h2>
+          <p>Ask your health-related questions and receive suggestions based on your symptoms.</p>
+        </div>
+
+        <div id="paperChatSection">
+          <div class="paper-center-logo" id="paperCenterLogo">
+            <img
+              src="assets/custom/chat-right-text.svg"
+              alt="PaperChat Logo"
+              style="width:100px; height:100px; margin-bottom: 10px;"
+            />
+            <h2 style="font-size: 1.8rem; color: #333; font-weight: 600;"></h2>
+          </div>
+
+          <div class="paper-chat-body" id="paperChatContainer">
+            <div class="paper-message">
+              <img src="assets/custom/chatbot.gif" alt="Bot Avatar" class="paper-bot-avatar">
+              <div class="paper-message-text">Welcome! How can I help you today?</div>
+            </div>
+          </div>
+
+          <div class="paper-chat-footer">
+            <div class="search-box" style="border-radius: 30px; width: min(600px, 90%); max-width: 600px; margin: 0 auto; padding: 8px 16px;">
+              <form id="paperChatForm" style="display: flex; align-items: center; width: 100%;">
+                <input
+                  type="text"
+                  id="paperChatInput"
+                  class="form-control search-input"
+                  placeholder="Ask anything..."
+                  required
+                  style="border-radius: 8px; height: 50px; font-size: 16px;"
+                />
+                <div class="search-icons" style="display: flex; align-items: center;">
+                  <button type="submit" class="icon-btn" aria-label="Send Message" id="paperChatSendBtn" style="width: 40px; height: 40px;">
+                    <img
+                      id="paperChatSendIcon"
+                      src="assets/custom/arrow_upward_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
+                      alt="Send"
+                      style="width: 20px; height: 20px;"
+                    />
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <footer id="footer" class="footer accent-background">
+    <div class="container copyright text-center mt-4">
+      <p>
+        ©
+        <span>Copyright</span>
+        <strong class="px-1 sitename">Symptom Checker Chatbot</strong>
+        <span>All Rights Reserved</span>
+      </p>
+    </div>
+  </footer>
+  <a
+    href="#"
+    id="scroll-top"
+    class="scroll-top d-flex align-items-center justify-content-center"
+  >
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+
+  <div id="preloader"></div>
+
+  <script
+    src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"
+  ></script>
+  <script
+    src="assets/vendor/php-email-form/validate.js"
+  ></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script
+    src="assets/vendor/glightbox/js/glightbox.min.js"
+  ></script>
+  <script
+    src="assets/vendor/swiper/swiper-bundle.min.js"
+  ></script>
+  <script
+    src="assets/vendor/purecounter/purecounter_vanilla.js"
+  ></script>
+  <script
+    src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"
+  ></script>
+  <script
+    src="assets/vendor/isotope-layout/isotope.pkgd.min.js"
+  ></script>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Chatbot JavaScript
+    document.addEventListener("DOMContentLoaded", function () {
+      const chatContainer = document.getElementById("paperChatContainer");
+      const chatInput = document.getElementById("paperChatInput");
+      const chatForm = document.getElementById("paperChatForm");
+
+      // Function to add a message to the chat container
+      function addMessageToChat(message, isUser = false) {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("paper-message");
+
+        if (isUser) {
+          messageDiv.classList.add("user-message");
+          messageDiv.innerHTML = `
+            <div class="paper-message-text">${message}</div>
+          `;
+        } else {
+          messageDiv.innerHTML = `
+            <img src="assets/custom/chatbot.gif" alt="Bot Avatar" class="paper-bot-avatar">
+            <div class="paper-message-text">${message}</div>
+          `;
+        }
+
+        chatContainer.appendChild(messageDiv);
+        chatContainer.scrollTop = chatContainer.scrollHeight; // Auto-scroll to the latest message
+      }
+
+      // Function to handle the form submission
+      function handleChatFormSubmit(event) {
+        event.preventDefault(); // Prevent the form from refreshing the page
+
+        const userMessage = chatInput.value.trim();
+
+        if (userMessage) {
+          addMessageToChat(userMessage, true); // Add the user's message to the chat
+          chatInput.value = ""; // Clear the input field
+
+          // Simulate a bot response (replace this with actual API calls)
+          setTimeout(() => {
+            addMessageToChat("I am a bot. I received your message: " + userMessage);
+          }, 1000);
+        }
+      }
+
+      // Attach the event listener to the form
+      chatForm.addEventListener("submit", handleChatFormSubmit);
+    });
+  </script>
+
+<style>
+  /* Basic Chat Layout */
+  #paperChatSection {
+    background: transparent;
+    position: relative;
+    min-height: 60vh;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .paper-center-logo {
+    position: relative;
+    text-align: center;
+    margin-top: 40px;
+    opacity: 0.9;
+  }
+  .paper-chat-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 25px 22px 400px 22px;
+    background: transparent;
+    scroll-behavior: smooth;
+    margin-bottom: 0;
+  }
+  .paper-chat-footer {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    padding: 10px 15px;
+    background-color: var(--surface-color);
+  }
+  .search-box {
+    background-color: var(--surface-color);
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 80%);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    transition: border 0.3s;
+  }
+  .search-box:hover {
+    border: 1px solid var(--default-color);
+  }
+  .search-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    margin-right: 10px;
+  }
+  .search-input:focus {
+    outline: none;
+  }
+  .icon-btn {
+    border: none;
+    border-radius: 50%;
+    background-color: #008374;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+  }
+  .icon-btn:hover {
+    background-color: #006B5F;
+  }
+  .icon-btn:focus {
+    outline: none;
+  }
+  .paper-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .paper-message-text {
+    background: var(--surface-color);
+    padding: 10px 14px;
+    border-radius: 8px;
+    max-width: 70%;
+    font-size: 15px;
+    text-align: justify;
+    white-space: pre-wrap;
+  }
+  .paper-message-text h3 {
+    margin-top: 0.5em;
+    margin-bottom: 0.2em;
+    font-size: 1.1rem;
+  }
+  .paper-message-text p {
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+    line-height: 1.4;
+  }
+  .paper-message-text table {
+    margin-top: 0.6em;
+    border-collapse: collapse;
+  }
+  .paper-message-text th,
+  .paper-message-text td {
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+  }
+  .paper-user-message {
+    flex-direction: row-reverse;
+  }
+  .paper-bot-avatar, .paper-user-avatar {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+  .thinking-indicator {
+    display: flex;
+    gap: 4px;
+    padding-block: 15px;
+  }
+  .dot {
+    height: 7px;
+    width: 7px;
+    opacity: 0.7;
+    border-radius: 50%;
+    background: var(--accent-color);
+    animation: dotPulse 1.8s ease-in-out infinite;
+  }
+  .dot:nth-child(1) { animation-delay: 0.2s; }
+  .dot:nth-child(2) { animation-delay: 0.3s; }
+  .dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes dotPulse {
+    0%, 44% { transform: translateY(0); }
+    28% { opacity: 0.4; transform: translateY(-4px); }
+    44% { opacity: 0.2; }
+  }
+</style>
+ 
+<!-- Chatbot JavaScript Logic -->
+<script>
+  const paperChatForm = document.getElementById('paperChatForm');
+  const paperChatInput = document.getElementById('paperChatInput');
+  const paperChatContainer = document.getElementById('paperChatContainer');
+  const paperCenterLogo = document.getElementById('paperCenterLogo');
+ 
+  paperChatInput.addEventListener('input', function() {
+    paperCenterLogo.style.display = 'none';
+  });
+ 
+  paperChatForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const userInput = paperChatInput.value.trim();
+    if (!userInput) return;
+    appendMessage(userInput, 'user');
+    paperChatInput.value = '';
+    startStream(userInput);
+  });
+ 
+  let eventSource = null;
+ 
+  function startStream(userInput) {
+    if (eventSource) {
+      eventSource.close();
+    }
+    appendMessage('', 'bot');
+    const botMessageDiv = paperChatContainer.lastElementChild.querySelector('.paper-message-text');
+    eventSource = new EventSource('/chatbot-stream?message=' + encodeURIComponent(userInput));
+    eventSource.onmessage = (event) => {
+      const chunk = event.data;
+      if (chunk.startsWith("Please provide a message") || chunk.startsWith("Error querying")) {
+        botMessageDiv.innerHTML = chunk;
+        eventSource.close();
+        return;
+      }
+      botMessageDiv.innerHTML += chunk;
+      paperChatContainer.scrollTop = paperChatContainer.scrollHeight;
+    };
+    eventSource.onerror = (err) => {
+      console.error('SSE Error:', err);
+      eventSource.close();
+    };
+  }
+ 
+  function appendMessage(text, sender='bot') {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('paper-message');
+    const avatarImg = document.createElement('img');
+    avatarImg.src = sender === 'user'
+      ? '{{ url_for("static", filename="assets/custom/management-consulting.gif") }}'
+      : '{{ url_for("static", filename="assets/custom/chatbot.gif") }}';
+    avatarImg.alt = sender === 'user' ? 'User Avatar' : 'Bot Avatar';
+    avatarImg.classList.add(sender === 'user' ? 'paper-user-avatar' : 'paper-bot-avatar');
+    const textDiv = document.createElement('div');
+    textDiv.classList.add('paper-message-text');
+    textDiv.innerHTML = text;
+    if (sender === 'user') {
+      messageDiv.classList.add('paper-user-message');
+    }
+    messageDiv.appendChild(avatarImg);
+    messageDiv.appendChild(textDiv);
+    paperChatContainer.appendChild(messageDiv);
+    paperChatContainer.scrollTop = paperChatContainer.scrollHeight;
+  }
+</script>
+ 
+</body>
+</html>

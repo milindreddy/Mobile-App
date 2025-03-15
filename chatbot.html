@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <title>MediHeal Chatbot - A Chatbot Prototype That Suggests Conditions Based on Symptoms</title>
+  <meta
+    name="description"
+    content="Symptom Checker Chatbot: A prototype that helps you find possible conditions based on your symptoms. This is not a substitute for professional medical advice."
+  />
+  <meta
+    name="keywords"
+    content="Symptom Checker, Medical, Chatbot, Health, AI, Conditions"
+  />
+
+  <link href="assets/img/favicon.png" rel="icon" />
+  <link
+    href="assets/img/apple-touch-icon.png"
+    rel="apple-touch-icon"
+  />
+
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet"
+  />
+
+  <link
+    href="assets/vendor/bootstrap/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+  <link
+    href="assets/vendor/glightbox/css/glightbox.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="assets/vendor/swiper/swiper-bundle.min.css"
+    rel="stylesheet"
+  />
+
+  <link href="assets/css/main.css" rel="stylesheet" />
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header fixed-top">
+    <div class="branding d-flex align-items-cente">
+      <div
+        class="container position-relative d-flex align-items-center justify-content-between"
+      >
+        <a href="index.html" class="logo d-flex align-items-center">
+          <h1 class="sitename">MediHeal</h1>
+          <span>.</span>
+        </a>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <section id="chatbot" class="chatbot section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="section-title">
+          <h2>MediHeal Chatbot</h2>
+          <p>Ask your health-related questions and receive suggestions based on your symptoms.</p>
+        </div>
+
+        <div id="paperChatSection">
+          <div class="paper-center-logo" id="paperCenterLogo">
+            <img
+              src="assets/custom/chat-right-text.svg"
+              alt="PaperChat Logo"
+              style="width:100px; height:100px; margin-bottom: 10px;"
+            />
+            <h2 style="font-size: 1.8rem; color: #333; font-weight: 600;"></h2>
+          </div>
+
+          <div class="paper-chat-body" id="paperChatContainer">
+            <div class="paper-message bot-message">
+              <img src="assets/custom/chatbot.gif" alt="Bot Avatar" class="paper-bot-avatar">
+              <div class="paper-message-text">Welcome! How can I help you today?</div>
+            </div>
+          </div>
+
+          <div class="paper-chat-footer">
+            <div class="search-box" style="border-radius: 30px; width: min(600px, 90%); max-width: 600px; margin: 0 auto; padding: 8px 16px;">
+              <form id="paperChatForm" style="display: flex; align-items: center; width: 100%;">
+                <input
+                  type="text"
+                  id="paperChatInput"
+                  class="form-control search-input"
+                  placeholder="Ask anything..."
+                  required
+                  style="border-radius: 8px; height: 50px; font-size: 16px;"
+                />
+                <div class="search-icons" style="display: flex; align-items: center;">
+                  <button type="submit" class="icon-btn" aria-label="Send Message" id="paperChatSendBtn" style="width: 40px; height: 40px;">
+                    <img
+                      id="paperChatSendIcon"
+                      src="assets/custom/arrow_upward_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"
+                      alt="Send"
+                      style="width: 20px; height: 20px;"
+                    />
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <footer id="footer" class="footer accent-background">
+    <div class="container copyright text-center mt-4">
+      <p>
+        ©
+        <span>Copyright</span>
+        <strong class="px-1 sitename">Symptom Checker Chatbot</strong>
+        <span>All Rights Reserved</span>
+      </p>
+    </div>
+  </footer>
+  <a
+    href="#"
+    id="scroll-top"
+    class="scroll-top d-flex align-items-center justify-content-center"
+  >
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+
+  <div id="preloader"></div>
+
+  <script
+    src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"
+  ></script>
+  <script
+    src="assets/vendor/php-email-form/validate.js"
+  ></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script
+    src="assets/vendor/glightbox/js/glightbox.min.js"
+  ></script>
+  <script
+    src="assets/vendor/swiper/swiper-bundle.min.js"
+  ></script>
+  <script
+    src="assets/vendor/purecounter/purecounter_vanilla.js"
+  ></script>
+  <script
+    src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"
+  ></script>
+  <script
+    src="assets/vendor/isotope-layout/isotope.pkgd.min.js"
+  ></script>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Disease Responses Map
+    const diseaseResponses = {
+      "Asthma": {
+        symptoms: "Wheezing, shortness of breath, chest tightness, coughing.",
+        remedies: "Use inhalers as prescribed, avoid triggers like smoke and allergens, maintain a healthy lifestyle.",
+        solutions: "Consult a pulmonologist for long-term management and regular check-ups."
+      },
+      "Diabetes": {
+        symptoms: "Increased thirst, frequent urination, fatigue, blurred vision.",
+        remedies: "Monitor blood sugar levels, follow a balanced diet, exercise regularly.",
+        solutions: "Consult an endocrinologist for medication and lifestyle adjustments."
+      },
+      "Hypertension (high blood pressure)": {
+        symptoms: "Headaches, dizziness, blurred vision, chest pain.",
+        remedies: "Reduce salt intake, exercise regularly, avoid smoking and excessive alcohol.",
+        solutions: "Consult a cardiologist for medication and regular monitoring."
+      },
+      "Coronary atherosclerosis": {
+        symptoms: "Chest pain, shortness of breath, fatigue, heart palpitations.",
+        remedies: "Adopt a heart-healthy diet, exercise regularly, quit smoking.",
+        solutions: "Consult a cardiologist for possible surgical interventions and medications."
+      },
+      "Chronic obstructive pulmonary disease (COPD)": {
+        symptoms: "Chronic cough, shortness of breath, wheezing, frequent respiratory infections.",
+        remedies: "Avoid smoking, use prescribed inhalers, pulmonary rehabilitation.",
+        solutions: "Consult a pulmonologist for long-term management and oxygen therapy if needed."
+      },
+      // Add more diseases and their responses here...
+    };
+
+    // Chatbot Logic
+    document.addEventListener("DOMContentLoaded", function () {
+      const chatContainer = document.getElementById("paperChatContainer");
+      const chatInput = document.getElementById("paperChatInput");
+      const chatForm = document.getElementById("paperChatForm");
+
+      function addMessageToChat(message, isUser = false) {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("paper-message");
+
+        if (isUser) {
+          messageDiv.classList.add("user-message");
+          messageDiv.innerHTML = `
+            <div class="paper-message-text">${message}</div>
+          `;
+        } else {
+          messageDiv.classList.add("bot-message");
+          messageDiv.innerHTML = `
+            <img src="assets/custom/chatbot.gif" alt="Bot Avatar" class="paper-bot-avatar">
+            <div class="paper-message-text">${message}</div>
+          `;
+        }
+
+        chatContainer.appendChild(messageDiv);
+        chatContainer.scrollTop = chatContainer.scrollHeight; // Auto-scroll to the latest message
+      }
+
+      function handleChatFormSubmit(event) {
+        event.preventDefault();
+
+        const userMessage = chatInput.value.trim();
+
+        if (userMessage) {
+          addMessageToChat(userMessage, true);
+          chatInput.value = "";
+
+          // Check if the user's message matches any disease in the map
+          const disease = Object.keys(diseaseResponses).find(d => userMessage.toLowerCase().includes(d.toLowerCase()));
+
+          if (disease) {
+            const response = diseaseResponses[disease];
+            const botMessage = `
+              <strong>${disease}</strong><br>
+              <strong>Symptoms:</strong> ${response.symptoms}<br>
+              <strong>Remedies:</strong> ${response.remedies}<br>
+              <strong>Solutions:</strong> ${response.solutions}
+            `;
+            addMessageToChat(botMessage);
+          } else {
+            addMessageToChat("I'm sorry, I don't have information on that condition. Please consult a healthcare professional.");
+          }
+        }
+      }
+
+      chatForm.addEventListener("submit", handleChatFormSubmit);
+    });
+  </script>
+
+  <style>
+    /* Basic Chat Layout */
+    #paperChatSection {
+      background: transparent;
+      position: relative;
+      min-height: 60vh;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .paper-center-logo {
+      position: relative;
+      text-align: center;
+      margin-top: 40px;
+      opacity: 0.9;
+    }
+    .paper-chat-body {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 25px 22px 400px 22px;
+      background: transparent;
+      scroll-behavior: smooth;
+      margin-bottom: 0;
+    }
+    .paper-chat-footer {
+      position: sticky;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      padding: 10px 15px;
+      background-color: var(--surface-color);
+    }
+    .search-box {
+      background-color: var(--surface-color);
+      border: 1px solid color-mix(in srgb, var(--default-color), transparent 80%);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+      transition: border 0.3s;
+    }
+    .search-box:hover {
+      border: 1px solid var(--default-color);
+    }
+    .search-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      margin-right: 10px;
+    }
+    .search-input:focus {
+      outline: none;
+    }
+    .icon-btn {
+      border: none;
+      border-radius: 50%;
+      background-color: #008374;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s;
+    }
+    .icon-btn:hover {
+      background-color: #006B5F;
+    }
+    .icon-btn:focus {
+      outline: none;
+    }
+    .paper-message {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      max-width: 80%;
+      margin-bottom: 15px;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .paper-message.bot-message {
+      align-self: flex-start;
+    }
+    .paper-message.user-message {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+    }
+    .paper-message-text {
+      background: var(--surface-color);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 15px;
+      text-align: justify;
+      white-space: pre-wrap;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .paper-message.user-message .paper-message-text {
+      background: #008374;
+      color: white;
+    }
+    .paper-bot-avatar, .paper-user-avatar {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 50%;
+    }
+    .paper-message-text {
+      background: var(--surface-color);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 15px;
+      text-align: left;
+      white-space: pre-wrap;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      line-height: 1.5;
+    }
+
+    .paper-message.user-message .paper-message-text {
+      background: #008374;
+      color: white;
+      text-align: right;
+    }
+
+    .paper-message.bot-message .paper-message-text {
+      background: #f1f1f1;
+      color: #333;
+    }
+    
+    .paper-user-avatar {
+      background: #008374;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</body>
+</html>
